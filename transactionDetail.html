@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Blue0x Cross-Chain Bridge">
+      <link rel="shortcut icon" href="./img/favicon.ico">
+      <title>Blue0x | Cross-Chain Bridge</title>
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="style.css">
+   </head>
+
+   <body>
+      <div class="back">
+      <nav class="navbar">
+         <div class="container">
+            <a href="index.html" class="navbar-brand">
+            <img src="./img/blue0x.png" class="logo">
+            </a>
+            <p class="circle">● <span id="status">connecting...</span></p>
+         </div>
+      </nav>
+
+      <div class="div-center-final" id="div-center-final">
+         <div class="content">
+            <h4>Transaction Details</h4>
+            <div id="txInfo">
+            	<p>Blue0x Address:</p>
+            	<p class="info" id="blxAddressInfo">......</p>
+            	<p>Polygon Address:</p>
+            	<p class="info" id="polyAddressInfo">......</p>
+            	<p>Amount:</p>
+            	<p class="info" id="transactionAmount">......</p>
+            	<p>Blue0x Transaction ID:</p>
+            	<p class="info" id="blxTransactionNum">......</p>
+            	<p>Polygon Transaction ID:</p>
+            	<a id="polyTransactionNum"></a>
+            </div>
+            <button type="button" class="viewOnBtn" id="polyscanBtn">View on Polygon</button>
+         </div>
+      </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+      <script src="./constants.js"></script>
+      <script src="./script.js"></script>
+      <script>
+      	var blxAddress = sessionStorage.getItem("blxAddressInfo")
+      	document.getElementById("blxAddressInfo").innerHTML = blxAddress
+
+      	var polyAddress = sessionStorage.getItem("polyAddressInfo")
+      	document.getElementById("polyAddressInfo").innerHTML = polyAddress
+
+         var add = document.getElementById('polyAddressInfo').innerHTML;
+         if ((add.length) > 25) {
+           var firsta = add.slice(0,6);
+           var lasta = add.slice(-14);
+           document.getElementById('polyAddressInfo').innerHTML = firsta + '...' + lasta;
+         } 
+
+      	var amount = sessionStorage.getItem("transactionAmount")
+      	document.getElementById("transactionAmount").innerHTML = amount
+
+      	var blxTransaction = sessionStorage.getItem("blxTransactionNum")
+      	document.getElementById("blxTransactionNum").innerHTML = blxTransaction
+
+      	var polyTransaction = sessionStorage.getItem("polyTransactionNum")
+       	document.getElementById("polyTransactionNum").innerHTML = polyTransaction
+
+         var tx = document.getElementById('polyTransactionNum').innerHTML;
+         if ((tx.length) > 25) {
+           var first = tx.slice(0,6);
+           var last = tx.slice(-14);
+           document.getElementById('polyTransactionNum').innerHTML = first + '...' + last;
+         } else {
+          document.getElementById('polyTransactionNum').innerHTML = tx;
+         }
+
+         document.getElementById('polyTransactionNum').addEventListener('click', function() {
+           window.open('https://mumbai.polygonscan.com/tx/' + polyTransaction)
+         });
+
+         document.getElementById('polyscanBtn').addEventListener('click', function() {
+           window.open('https://mumbai.polygonscan.com/tx/' + polyTransaction)
+         });
+      </script>
+   </body>
+</html>
