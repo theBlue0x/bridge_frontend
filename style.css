@@ -5,6 +5,10 @@
   -webkit-focus-ring-color: rgba(0, 0, 0, 0) !important;
 }
 
+body {
+  background: #24252c;
+}
+
 h4 {
   margin-left: 10px;
 }
@@ -26,7 +30,7 @@ h4 {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
+  top: 25px;
   bottom: 0;
   margin: auto;
   max-width: 95%;
@@ -65,7 +69,7 @@ h4 {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
+  top: 25px;
   bottom: 0;
   margin: auto;
   max-width: 95%;
@@ -84,7 +88,7 @@ h4 {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
+  top: 25;
   bottom: 0;
   margin: auto;
   max-width: 95%;
