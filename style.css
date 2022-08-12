@@ -209,7 +209,7 @@ button:focus {
   align-items: center;
   justify-content: center;
   left: 43%;
-  top: 30%;
+  top: 27%;
   background: rgb(173, 173, 173);
   width: 35px;
   height: 35px;
@@ -232,7 +232,7 @@ button:focus {
   align-items: center;
   justify-content: center;
   left: 43%;
-  top: 23%;
+  top: 21%;
   background: rgb(173, 173, 173);
   width: 35px;
   height: 35px;
@@ -250,7 +250,7 @@ button:focus {
   align-items: center;
   justify-content: center;
   left: 43%;
-  top: 28%;
+  top: 27%;
   background: rgb(173, 173, 173);
   width: 35px;
   height: 35px;
@@ -327,12 +327,13 @@ button:focus {
 .modal-body {
   border: none;
   padding-top: 4px;
+  padding-bottom: 6px;
 }
 
 .modal-footer {
   border: none;
   padding-top: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 24px;
 }
 
 .submit-btn-modal {
