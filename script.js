@@ -38,18 +38,6 @@ $.post(Constants.apiUrl, {
     }
 })
 
-// Check Poly Address to see if actual address //
-function checkPolyAddress() {
-    document.getElementById("errorMessageExport").innerHTML = "";
-    var address = document.getElementById('polyAddress').value;
-    var valid = ethers.utils.isAddress(address)
-    if (valid != false) {
-        polyAddress()
-    } else {
-        document.getElementById("errorMessageExport").innerHTML = "<p> Not a valid Polygon Address</p>";
-    }
-}
-
 // Fill input boxes with amounts and address //
 function fillAmountExport () {
   var amount = document.getElementById('blxAmountExport').value;
@@ -65,20 +53,6 @@ function fillAmountImport () {
   document.getElementById('blxAmountImport').value = amount;
   document.getElementById('blxAmountImportModal').value = amount;
   document.getElementById('polyAmountImportModal').value = amount;
-}
-
-function polyAddress () {
-  var address = document.getElementById('polyAddress').value;
-  sessionStorage.setItem('polyAddressFull', address)
-  if ((address.length) > 25) {
-    var first = address.slice(0,6);
-    var last = address.slice(-14);
-    document.getElementById('polyAddress').value = first + '...' + last;
-    document.getElementById('polyAddressModal').value = first + '...' + last;
-} else {
-    document.getElementById('polyAddress').value = address;
-    document.getElementById('polyAddressModal').value = address;
-  }
 }
 
 function blxAddress () {
@@ -111,18 +85,12 @@ function NumAndTwoDecimals(e, field) {
     var re = /^([0-9]+[\.]?[0-9]?[0-9]?|[0-9]+)$/g;  
     var re1 = /^([0-9]+[\.]?[0-9]?[0-9]?|[0-9]+)/g;  
     if (re.test(val)) {  
-
-    }  
-    else {  
+    } else {  
         val = re1.exec(val);  
         if (val) {  
             field.value = val[0];  
-        }  
-        else {  
+        }  else {  
             field.value = "";  
-        }  
-    }  
+}  }  
 }  
-
-
 

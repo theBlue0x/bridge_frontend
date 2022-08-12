@@ -21,10 +21,10 @@
             <p class="circle">● <span id="status">connecting...</span></p>
          </div>
       </nav>
+
       <div id="loading">
         <img id="loading-image" src="./img/loader.gif" alt="Loading..." />
       </div>
-
 
       <div class="div-center-import" id="div-center-import">
       <div class="content">
@@ -47,7 +47,8 @@
             <input type="text" class="form-control" id="blxAddress" placeholder="Blue0x Wallet Address" onblur="blxAddress()" onchange="clearErrorMessageImport()" required>
          </div>
          <div class="fee">Estimated Fee:</div>
-         <button type="submit" class="submit-btn" onclick="validateImport()">Connect Wallet</button>
+         <button type="submit" class="submit-btn" id="connectButtonImport">Connect</button>
+         <button type="submit" class="submit-btn" id="connectedButtonImport">Preview</button>
          <span id="errorMessageImport"></span>
 
 
@@ -92,7 +93,7 @@
             <h4>Export to Polygon</h4>
             <hr />
             <div class="flexContainer">
-               <input type="number" class="form-control" id="blxAmountExport" oninput="NumAndTwoDecimals(event , this);fillAmountExport()"  placeholder="0.00" required>
+               <input type="number" class="form-control" id="blxAmountExport" oninput="NumAndTwoDecimals(event , this);fillAmountExport();"  placeholder="0.00" required>
                <button class="coin-label"><img src="./img/blue0x.png" class="blx-icon">USDX
                </button>
             </div>
@@ -105,10 +106,11 @@
                </button>
             </div>
             <div class="flexContainer">
-               <input type="text" autocomplete="random" class="form-control" id="polyAddress" oninput="checkPolyAddress()" placeholder="Polygon Wallet Address" required>
+               <input type="text" autocomplete="rando" class="form-control" id="polyAddress" placeholder="Polygon Wallet Address" required readonly>
             </div>
             <div class="fee">Transaction Fee: 0.01 BLX</div>
-            <button type="submit" class="submit-btn" onclick="checkFields()">Preview</button>
+            <button type="submit" class="submit-btn" id="connectButtonExport">Connect</button>
+            <button type="submit" class="submit-btn" id="connectedButtonExport" onclick="checkFields()">Preview</button>
             <span id="errorMessageExport"></span>
 
 
@@ -154,9 +156,10 @@
          </div>
       </div>
 
+      <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-      <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+      <script src="./metamask.js"></script>
       <script src="./constants.js"></script>
       <script src="./script.js"></script>
       <script>

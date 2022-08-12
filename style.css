@@ -10,8 +10,9 @@ h4 {
 }
 
 .back {
-  background: #2a232d;
+  background: #24252c;
   width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -148,6 +149,21 @@ div.content {
   cursor: pointer;
 }
 
+.connect-btn {
+  border-radius: 10px;
+  background: #172941;
+  border: none;
+  color: #5090ea;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #193356;
+}
+
+
 .flexContainer{
   position: relative;
 }
@@ -261,7 +277,8 @@ button:focus {
 
 .circle {
   color: limegreen;
-  font-size: 20px;
+  font-size: 25px;
+  margin-top: 16px;
 }
 
 #status {
@@ -396,7 +413,7 @@ span p {
   top: 0;
   left: 0;
   opacity: 0.9;
-  background-color: #181a1e;
+  background-color: #1b1b1b;
   z-index: 99999;
 }
 
@@ -404,3 +421,47 @@ span p {
   z-index: 100;
   max-width: -webkit-fill-available;
 }
+
+#connectedButtonExport {
+  display: none;
+}
+
+#connectedButtonImport {
+  display: none;
+}
+
+#audit {
+  text-align: center;
+}
+
+hr {
+  border-top: 1px solid #343a40;
+}
+
+.panel {
+  background-color: #181a1e;
+  border-radius: 20px;
+  color: whitesmoke;
+  height: 175px;
+  margin-bottom: 10px;
+}
+
+.panel-heading {
+  color: whitesmoke;
+  font-size: 16px;
+  padding-top: 18px;
+  padding-left: 20px;
+}
+
+.panel-body {
+  margin-left: 16px;
+}
+
+.panel-body p {
+  font-size: 12px;
+}
+
+.row {
+  margin: 14px;
+}
+
