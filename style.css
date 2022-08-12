@@ -126,7 +126,7 @@ div.content {
   height: 65px;
   width: 100%;
   border-radius: 20px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   background: #172941;
   border: none;
   color: #5090ea;
@@ -273,6 +273,7 @@ button:focus {
   margin-bottom: 0px;
   font-style: italic;
   margin-left: 4px;
+  color: #636b73;
 }
 
 .circle {
@@ -325,6 +326,7 @@ button:focus {
 
 .modal-body {
   border: none;
+  padding-top: 4px;
 }
 
 .modal-footer {
