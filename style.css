@@ -1,3 +1,4 @@
+
 * {
   font-family: "Open Sans", sans-serif !important;
   font-weight: 500;
@@ -430,6 +431,10 @@ span p {
   display: none;
 }
 
+.navbar-audit {
+  text-align: center;
+}
+
 #audit {
   text-align: center;
 }
@@ -442,19 +447,20 @@ hr {
   background-color: #181a1e;
   border-radius: 20px;
   color: whitesmoke;
-  height: 175px;
-  margin-bottom: 10px;
+  height: 260px;
+  margin-bottom: 20px;
 }
 
 .panel-heading {
   color: whitesmoke;
   font-size: 16px;
+  font-weight: 600;
   padding-top: 18px;
   padding-left: 20px;
 }
 
 .panel-body {
-  margin-left: 16px;
+  margin: 20px;
 }
 
 .panel-body p {
@@ -462,6 +468,8 @@ hr {
 }
 
 .row {
-  margin: 14px;
+  margin-left: 14px;
+  margin-right: 14px;
 }
+
 
