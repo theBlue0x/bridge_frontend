@@ -15,7 +15,7 @@ h4 {
 
 .back {
   background: #24252c;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   position: absolute;
   top: 0;
@@ -52,7 +52,7 @@ h4 {
   top: 0;
   bottom: 0;
   margin: auto;
-  max-width: 100%;
+  max-width: 95vw;
   max-height: 100%;
   overflow: auto;
   padding: 20px 20px;
@@ -72,7 +72,7 @@ h4 {
   top: 25px;
   bottom: 0;
   margin: auto;
-  max-width: 95%;
+  max-width: 95vw;
   max-height: 100%;
   overflow: auto;
   padding: 20px 20px;
@@ -91,7 +91,7 @@ h4 {
   top: 25px;
   bottom: 0;
   margin: auto;
-  max-width: 95%;
+  max-width: 95vw;
   max-height: 100%;
   overflow: auto;
   padding: 20px 20px;
@@ -444,7 +444,6 @@ span p {
 #audit {
   text-align: center;
 }
-
 
 .panel {
   background-color: #181a1e;
