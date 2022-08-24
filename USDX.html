@@ -193,7 +193,8 @@
             sessionStorage.setItem("polyAddressExport", address)
             sessionStorage.setItem("transactionAmountExport", amount)
             sessionStorage.setItem("blxTransactionNumExport", transaction)
-            $.post(Constants.usdxMintAPI,{
+            $.post(Constants.mintAPI,{
+               contractAddress: Constants.usdxContract,
                transaction: transaction,
                address: address,
                amount: amount
@@ -229,7 +230,7 @@
             document.getElementById('blxTransactionNumImport').innerHTML = '<span class="blink_me">●</span><span class="waiting">  Waiting for Polygon confirmation... </span>'
             try {
                const burn = await erc20.burn(amount);
-               $.post(Constants.usdxBurnAPI, {
+               $.post(Constants.burnAPI, {
                   blxAddress: blxAddress,
                   tx: burn.hash,
                   currency: Constants.usdxId,
