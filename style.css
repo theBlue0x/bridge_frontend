@@ -25,7 +25,7 @@ h4 {
 .div-center-index {
   display: table;
   width: 375px;
-  height: 395px;
+  height: 375px;
   background-color: #181a1e;
   position: absolute;
   left: 0;
@@ -33,9 +33,9 @@ h4 {
   top: 25px;
   bottom: 0;
   margin: auto;
-  max-width: 95%;
+  max-width: 90vw;
   max-height: 100%;
-  overflow: hidden;
+  overflow: auto;
   padding: 20px 20px;
   border-radius: 20px;
   color: white;
@@ -52,7 +52,7 @@ h4 {
   top: 0;
   bottom: 0;
   margin: auto;
-  max-width: 95vw;
+  max-width: 90vw;
   max-height: 100%;
   overflow: auto;
   padding: 20px 20px;
@@ -72,7 +72,7 @@ h4 {
   top: 25px;
   bottom: 0;
   margin: auto;
-  max-width: 95vw;
+  max-width: 90vw;
   max-height: 100%;
   overflow: auto;
   padding: 20px 20px;
@@ -91,7 +91,7 @@ h4 {
   top: 25px;
   bottom: 0;
   margin: auto;
-  max-width: 95vw;
+  max-width: 90vw;
   max-height: 100%;
   overflow: auto;
   padding: 20px 20px;
@@ -193,7 +193,7 @@ div.content {
 .icon {
   width: 28px;
   margin-right: 8px;
-  margin-bottom: 3px;
+  margin-bottom: 8px;
 }
 
 .logo {
@@ -291,7 +291,8 @@ button:focus {
 }
 
 .nav-justified {
-  margin-top: 24px;
+  margin-top: 32px;
+  margin-bottom: 16px;
 }
 
 .nav-pills .nav-link {
@@ -443,26 +444,28 @@ span p {
 
 #audit {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .panel {
   background-color: #181a1e;
   border-radius: 20px;
   color: whitesmoke;
-  height: 250px;
+  height: 275px;
   margin-bottom: 20px;
 }
 
 .panel-heading {
   color: whitesmoke;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
   padding-top: 18px;
   padding-left: 20px;
 }
 
 .panel-body {
-  margin: 20px;
+  margin: 24px;
+  margin-left: 36px;
 }
 
 .panel-body p {
@@ -470,7 +473,34 @@ span p {
 }
 
 .row {
-  margin-left: 14px;
-  margin-right: 14px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
+
+#gasFee {
+  font-size: 14px;
+}
+
+.blink_me {
+  animation: blinker 3s linear infinite;
+  color: limegreen;
+  font-size: 22px;
+}
+
+@keyframes blinker {
+  50% {
+  opacity: 0;
+  }
+}
+
+.waiting {
+  font-size: 13px;
+  font-style: italic;
+}
+
+@media screen and (min-width: 1150px) {
+  .row {
+    margin-left: 50px;
+    margin-right: 55px;
+  }
 

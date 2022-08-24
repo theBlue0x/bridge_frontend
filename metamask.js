@@ -1,5 +1,3 @@
-const forwarderOrigin = 'http://localhost:3000';
-
 const initialize = () => {
   //Basic Actions Section
   const onboardButtonI = document.getElementById('connectButtonImport');
@@ -91,9 +89,9 @@ MetaMaskClientCheck();
 
 ethereum.on('accountsChanged', function (accounts) {
   isConnected();
-
 })
 
 };
 
 window.addEventListener('DOMContentLoaded', initialize);
+

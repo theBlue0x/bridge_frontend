@@ -5,6 +5,21 @@ function escapeHtml(string) {
   });
 }
 
+// Block number in header //
+$.get(Constants.apiUrl, {
+  requestType: 'getBlockchainStatus'
+  },
+  function (result){
+    var response = JSON.parse(result)
+    var error = response.errorDescription
+    var height = response.numberOfBlocks
+    if (!error) {
+        $("#status").html(height)
+    } else {
+        $("#status").html(error)
+    }
+})
+
 // Export, import card switch //
 function flip() {
   var x = document.getElementById("div-center-export");
@@ -23,21 +38,6 @@ function flipback() {
     
 }}
 
-// Block number in header //
-$.post(Constants.apiUrl, {
-  requestType: 'getBlockchainStatus'
-  },
-  function (result){
-    var response = JSON.parse(result)
-    var error = response.errorDescription
-    var height = response.numberOfBlocks
-    if (!error) {
-        $("#status").html(height)
-    } else {
-        $("#status").html(error)
-    }
-})
-
 // Fill input boxes with amounts and address //
 function fillAmountExport () {
   var amount = document.getElementById('blxAmountExport').value;
@@ -51,25 +51,26 @@ function fillAmountImport () {
   var amount = document.getElementById('polyAmountImport').value;
   document.getElementById("errorMessageImport").innerHTML = "";
   document.getElementById('blxAmountImport').value = amount;
-  document.getElementById('blxAmountImportModal').value = amount;
-  document.getElementById('polyAmountImportModal').value = amount;
 }
 
-function blxAddress () {
-  document.getElementById("errorMessageExport").innerHTML = "";
-  var address = document.getElementById('blxAddress').value;
-  if ((address.length) > 25) {
-    var first = address.slice(0,6);
-    var last = address.slice(-14);
-    document.getElementById('blxAddress').value = first + '...' + last;
-    document.getElementById('blxAddressModal').value = first + '...' + last;
-} else {
-    document.getElementById('blxAddress').value = address;
-    document.getElementById('blxAddressModal').value = address;
-  }
+function checkBLXAddress () {
+    var account = document.getElementById('blxAddress').value;
+    $.getJSON(Constants.apiUrl, {
+        requestType: 'getAccount',
+        account: account
+    },
+    function(result) {
+        var error = result.errorDescription
+        if (!error) {
+            document.getElementById("errorMessageImport").innerHTML = "";
+        } else {
+            document.getElementById("errorMessageImport").innerHTML = "<p>Not a valid account.</p>"
+        }
+    }
+    )
 }
 
-function checkFields(){
+function checkFieldsExport(){
     document.getElementById("errorMessageExport").innerHTML = ""
     var amount = document.getElementById('blxAmountExport').value
     var address = document.getElementById('polyAddress').value
@@ -80,7 +81,8 @@ function checkFields(){
     }
 }
 
-function NumAndTwoDecimals(e, field) {  
+// Restrict to 2 decimal places //
+function twoDecimals(e, field) {  
     var val = field.value;  
     var re = /^([0-9]+[\.]?[0-9]?[0-9]?|[0-9]+)$/g;  
     var re1 = /^([0-9]+[\.]?[0-9]?[0-9]?|[0-9]+)/g;  

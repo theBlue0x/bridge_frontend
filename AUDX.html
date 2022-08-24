@@ -6,10 +6,7 @@
       <meta name="description" content="Blue0x Cross-Chain Bridge">
       <link rel="shortcut icon" href="./img/favicon.ico">
       <title>Blue0x | Cross-Chain Bridge</title>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="style.css">
    </head>
@@ -24,12 +21,15 @@
             <p class="circle">● <span id="status">connecting...</span></p>
          </div>
       </nav>
+      
 
+      <div id="loading">
+        <img id="loading-image" src="./img/loader.gif" alt="Loading..." />
+      </div>
 
       <div class="div-center-import" id="div-center-import">
       <div class="content">
          <h4>Import to Blue0x</h4>
-         <hr />
          <div class="flexContainer">
             <input type="number" class="form-control" id="polyAmountImport" onkeyup="fillAmountImport()" placeholder="0.00" required>
             <button class="coin-label"><img src="./img/matic.png" class="icon">AUDX
@@ -44,10 +44,11 @@
             </button>
          </div>
          <div class="flexContainer">
-            <input type="text" class="form-control" id="blxAddress" placeholder="Blue0x Wallet Address" onblur="blxAddress()" required>
+            <input type="text" class="form-control" id="blxAddress" placeholder="Blue0x Wallet Address" onblur="blxAddress()" onchange="clearErrorMessageImport()" required>
          </div>
          <div class="fee">Estimated Fee:</div>
-         <button type="submit" class="submit-btn" onclick="validateImport()">Connect Wallet</button>
+         <button type="submit" class="submit-btn" id="connectButtonImport">Connect</button>
+         <button type="submit" class="submit-btn" id="connectedButtonImport">Preview</button>
          <span id="errorMessageImport"></span>
 
 
@@ -56,7 +57,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                <div class="modal-content">
                   <div class="modal-header">
-                     <h5 class="modal-title">Confirm Transaction</h5>
+                     <h4 class="modal-title">Confirm Transaction</h4>
                   </div>
                   <div class="modal-body">
                      <div class="flexContainer">
@@ -86,13 +87,11 @@
          </div>
       </div>
 
-
       <div class="div-center-export" id="div-center-export">
          <div class="content">
             <h4>Export to Polygon</h4>
-            <hr />
             <div class="flexContainer">
-               <input type="number" class="form-control" id="blxAmountExport" onkeyup="fillAmountExport()" placeholder="0.00" required>
+               <input type="number" class="form-control" id="blxAmountExport" oninput="NumAndTwoDecimals(event , this);fillAmountExport();"  placeholder="0.00" required>
                <button class="coin-label"><img src="./img/blue0x.png" class="blx-icon">AUDX
                </button>
             </div>
@@ -105,10 +104,11 @@
                </button>
             </div>
             <div class="flexContainer">
-               <input type="text" class="form-control" id="polyAddress" onblur="polyAddress()" placeholder="Polygon Wallet Address" required>
+               <input type="text" autocomplete="rando" class="form-control" id="polyAddress" placeholder="Polygon Wallet Address" required readonly>
             </div>
             <div class="fee">Transaction Fee: 0.01 BLX</div>
-            <button type="submit" class="submit-btn" data-toggle="modal" onclick="validateExport()">Preview</button>
+            <button type="submit" class="submit-btn" id="connectButtonExport">Connect</button>
+            <button type="submit" class="submit-btn" id="connectedButtonExport" onclick="checkFields()">Preview</button>
             <span id="errorMessageExport"></span>
 
 
@@ -117,7 +117,7 @@
                <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                      <div class="modal-header">
-                        <h5 class="modal-title">Confirm Transaction</h5>
+                        <h4 class="modal-title">Confirm Transaction</h4>
                      </div>
                      <div class="modal-body">
                         <div class="flexContainer">
@@ -137,6 +137,9 @@
                            <input type="text" class="form-control" id="polyAddressModal" placeholder="Polygon Wallet Address" readonly>
                         </div>
                         <div class="flexContainer">
+                           <input type="text" class="form-control" id="polyAddressFull" placeholder="Polygon Wallet Address" readonly style="display: none;">
+                        </div>
+                        <div class="flexContainer">
                            <input type="password" class="form-control" id="secretPassModal" placeholder="BLX Account Passphrase">
                         </div>
                         <div class="feeModal">Transaction Fee: 0.01 BLX</div>
@@ -149,23 +152,27 @@
                </div>
             </div>
          </div>
-         
       </div>
+
+      <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-      
+      <script src="./metamask.js"></script>
       <script src="./constants.js"></script>
       <script src="./script.js"></script>
       <script>
          function exportToPoly() {
+            document.getElementById("exportModal").style.display = ""
+            document.getElementById("loading").style.display = "flex"
              var amount = $('#polyAmountExportModal').val() * 100;
-             var message = $('#polyAddressModal').val();
+             var units = Number(amount).toFixed(0)
+             var message = sessionStorage.getItem("polyAddressFull");
              $.post(Constants.apiUrl, {
                requestType: "transferCurrency",
                secretPhrase: $('#secretPassModal').val(),
-               recipient: Constants.lockWallet,
-               currency: Constants.AUDXId,
-               units: escapeHtml(amount),
+               recipient: Constants.audxLockWallet,
+               currency: Constants.audxId,
+               units: escapeHtml(units),
                message: escapeHtml(message),
                messageIsText: "true",
                messageIsPrunable: "true",
@@ -173,16 +180,25 @@
                deadline: 60
              },
            function(result) {
-             var transactionNumber = result.transaction;
-             $.post(Constants.apiUrl, {
-               requestType: "getTransaction",
-               transaction: transactionNumber
-             },
-             function(result2){
-                 var parse = JSON.parse(result2)
-                 var attachment = parse.attachment
-                 var address = attachment.message
-             })
+            var transaction = result.transaction
+            var info = result.transactionJSON.attachment
+            var blxAddress = result.transactionJSON.senderRS
+            var address = info.message
+            var amount = (info.units / 100).toFixed(2)
+            sessionStorage.setItem("blxAddressInfo", blxAddress)
+            sessionStorage.setItem("polyAddressInfo", address)
+            sessionStorage.setItem("transactionAmount", amount)
+            sessionStorage.setItem("blxTransactionNum", transaction)
+            $.post(Constants.audxMintAPI,{
+               transaction: transaction,
+               address: address,
+               amount: amount
+            },
+            function(result2) {
+            var polyTransaction = result2
+            sessionStorage.setItem("polyTransactionNum", polyTransaction)
+            window.location.href = "./transactionDetail.html"
+            })
              }, "json");
          };
       </script>
