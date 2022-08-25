@@ -325,7 +325,6 @@
 	})
 </script>
 <script>
-	function chfx() {
 	var lockWallet = Constants.chfxLockWallet
 	document.getElementById('chfxLockWallet').innerHTML = lockWallet
 	var contract = Constants.chfxContract
@@ -349,7 +348,7 @@
 	function(result2) {
 		var supply2 = ((result2.units) / 100)
 		document.getElementById('chfxBlxBalance').innerHTML  = supply2.toLocaleString() + ' CHFX'
-	})}
+	})
 </script>
 <script>
 	var lockWallet = Constants.cnyxLockWallet
