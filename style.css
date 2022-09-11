@@ -15,7 +15,7 @@ h4 {
 
 .back {
   background: #24252c;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
@@ -24,7 +24,7 @@ h4 {
 
 .div-center-index {
   display: table;
-  width: 90vw;
+  width: 90%;
   height: 375px;
   max-width: 375px;
   background-color: #181a1e;
@@ -42,7 +42,7 @@ h4 {
 
 .div-center-export {
   display: table;
-  width: 90vw;
+  width: 90%;
   height: 375px;
   max-width: 375px;
   background-color: #181a1e;
@@ -60,7 +60,7 @@ h4 {
 
 .div-center-import {
   display: none;
-  width: 90vw;
+  width: 90%;
   height: 375px;
   max-width: 375px;
   background-color: #181a1e;
@@ -78,7 +78,7 @@ h4 {
 
 .div-center-final {
   display: table;
-  width: 90vw;
+  width: 90%;
   height: 375px;
   max-width: 375px;
   background-color: #181a1e;
